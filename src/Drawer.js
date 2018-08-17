@@ -45,9 +45,7 @@ export default class Drawer extends Component {
 		// Whether it's open or not
 		open: false,
 		// Whether the window is being pulled up/down or not
-		pulling: false,
-		// Zero means user haven't scrolled the content yet
-		scrollOffset: 0
+		pulling: false
 	};
 
 	// Configure animations
@@ -68,7 +66,7 @@ export default class Drawer extends Component {
 		// Window width
 		width: {
 			end: width, // takes full with once opened
-			start: width - 20 // slightly narrower than screen when closed
+			start: width // slightly narrower than screen when closed
 		},
 		// Window backdrop opacity
 		opacity: {
@@ -169,7 +167,7 @@ export default class Drawer extends Component {
 							</View>
 							{/* Header */}
 							<View style={styles.headerTitle}>
-								<Text style={styles.headerText}>{header}</Text>
+								<Text style={styles.headerText}>{this.props.headerText}</Text>
 							</View>
 						</View>
 					</TouchableWithoutFeedback>
@@ -194,7 +192,8 @@ export default class Drawer extends Component {
 					{...this._panResponder.panHandlers}
 				>
 					{/* Put all content in a scrollable container */}
-					<ScrollView
+					<View
+						style={{ flex: 1 }}
 						ref={scrollView => {
 							this._scrollView = scrollView;
 						}}
@@ -205,11 +204,10 @@ export default class Drawer extends Component {
 						showsVerticalScrollIndicator={false}
 						// Trigger onScroll often
 						scrollEventThrottle={16}
-						onScroll={this._handleScroll}
 					>
 						{/* Render children components */}
 						{children}
-					</ScrollView>
+					</View>
 				</Animated.View>
 			</Animated.View>
 		);
@@ -313,7 +311,6 @@ export default class Drawer extends Component {
 
 	// Minimize window and keep a teaser at the bottom
 	close = () => {
-		this._scrollView.scrollTo({ y: 0 });
 		Animated.timing(this._animatedPosition, {
 			toValue: this.config.position.start,
 			duration: 400
@@ -371,11 +368,11 @@ const styles = StyleSheet.create({
 		...StyleSheet.absoluteFillObject, // fill up all screen
 		alignItems: 'center', // center children
 		justifyContent: 'flex-start', // align popup at the bottom
-		backgroundColor: 'black'
+		backgroundColor: 'rgba(0,0,0,0.6)'
 	},
 	// Body
 	content: {
-		backgroundColor: 'black',
+		backgroundColor: 'transparent',
 		height: height
 	},
 	// Header
