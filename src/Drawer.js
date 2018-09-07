@@ -153,7 +153,7 @@ export default class Drawer extends Component {
 				]
 			});
 		return (
-			<Animated.View style={[styles.container, this.getContainerStyle()]}
+			<Animated.View style={[styles.container, this.getContainerStyle()]}>
 				{/* Backdrop with animated opacity */}
 				<Animated.View style={[styles.backdrop, { opacity: animatedOpacity }]}>
 					{/* Close window when tapped on header */}
