@@ -154,8 +154,6 @@ export default class Drawer extends Component {
 			});
 		return (
 			<Animated.View style={[styles.container, this.getContainerStyle()]}>
-				{/* Use light status bar because we have dark background */}
-				<StatusBar barStyle={'light-content'} />
 				{/* Backdrop with animated opacity */}
 				<Animated.View style={[styles.backdrop, { opacity: animatedOpacity }]}>
 					{/* Close window when tapped on header */}
