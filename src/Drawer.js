@@ -106,7 +106,7 @@ export default class Drawer extends Component {
 		// Initialize PanResponder to handle gestures
 		this._panResponder = PanResponder.create({
 			onStartShouldSetPanResponder: this._grantPanResponder,
-			onStartShouldSetPanResponderCapture: this._grantPanResponder,
+			//		onStartShouldSetPanResponderCapture: this._grantPanResponder,
 			onMoveShouldSetPanResponder: this._grantPanResponder,
 			onMoveShouldSetPanResponderCapture: this._grantPanResponder,
 			onPanResponderGrant: this._handlePanResponderGrant,
