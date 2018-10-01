@@ -213,6 +213,12 @@ export default class Drawer extends Component {
 
 	// Either allow or deny gesture handler
 	_grantPanResponder = (evt, gestureState) => {
+		if (gestureState.dy === 0 && gestureState.dx === 0) {
+			return false;
+		}
+		if (Math.abs(gestureState.dy) < Math.abs(gestureState.dx)) {
+			return false;
+		}
 		// Allow if is not open
 		if (!this.state.open) {
 			return true;
